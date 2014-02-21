@@ -5,7 +5,7 @@
     <artifactId>${artifactId}</artifactId>
     <packaging>war</packaging>
     <version>${version}</version>
-    <name>Servlet 3 Web Application</name>
+    <name>Servlet 3 + Wicket Modular Web Application</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -70,6 +70,23 @@
     </dependencies>
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
+        <resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -94,13 +111,17 @@
 							<port>8080</port>
 							<maxIdleTime>3600000</maxIdleTime>
 						</connector>
+						
+						<!-- Config HTTPS, don't forget to generate keystore -->
+						<!-- 
 						<connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
 							<port>8443</port>
 							<maxIdleTime>3600000</maxIdleTime>
 							<keystore>${project.build.directory}/test-classes/keystore</keystore>
-							<password>wicket</password>
-							<keyPassword>wicket</keyPassword>
+							<password>123456</password>
+							<keyPassword>123456</keyPassword>
 						</connector>
+ 						-->
 					</connectors>
 				</configuration>
 			</plugin>
@@ -123,6 +144,21 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>make-a-jar</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
     

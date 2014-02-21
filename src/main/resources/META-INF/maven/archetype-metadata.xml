@@ -11,6 +11,13 @@
                 <include>**/*.java</include>
             </includes>
         </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+
         <fileSet filtered="true" encoding="UTF-8">
             <directory>src/main/webapp</directory>
             <includes>
@@ -23,17 +30,14 @@
                 <include>**/*.*</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/test/java</directory>
-            <includes>
-                <include>**/*.java</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
+        
+        <fileSet filtered="false" encoding="UTF-8">
             <directory>src/test/resources</directory>
             <includes>
-                <include>**/*.*</include>
+                <include>**/*</include>
+                <include>keystore</include>
             </includes>
         </fileSet>
+        
     </fileSets>
 </archetype-descriptor>
